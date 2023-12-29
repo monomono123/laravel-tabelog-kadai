@@ -53,7 +53,7 @@ class UserController extends Controller
     public function reservations()
     {
         $user = Auth::user();
-        $reservations = $user->reservations()->where(reservationday, '>', date('Y-m-d H:i:s'))->get();
+        $reservations = $user->reservations()->where('reservationday', '>', date('Y-m-d H:i'))->get();
         return view('users.reservations', compact('reservations'));
     }
 

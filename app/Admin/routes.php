@@ -2,7 +2,7 @@
 
 use Illuminate\Routing\Router;
 use App\Admin\Controllers\CategoryController;
-
+use App\Admin\Controllers\ReservationController;
 
 Admin::routes();
 
@@ -15,5 +15,6 @@ Route::group([
 
     $router->get('/', 'HomeController@index')->name('home');
     $router->resource('categories', CategoryController::class);
+    $router->resource('reservations', ReservationController::class);
 
 });

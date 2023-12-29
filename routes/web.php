@@ -20,7 +20,8 @@ use App\Http\Controllers\ReservationController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return to_route('restaurants.index');
+
 });
 
 Route::get('/dashboard', function () {
@@ -53,4 +54,3 @@ Route::post('favorites/{restautant_id}', [FavoriteController::class, 'store'])->
  });
 
  Route::resource('reservations', ReservationController::class);
- 

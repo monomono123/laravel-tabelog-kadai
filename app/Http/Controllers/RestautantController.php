@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Restaurant;
 use Illuminate\Http\Request;
+use App\Models\Category;
 
 class RestautantController extends Controller
 {
@@ -12,10 +13,32 @@ class RestautantController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {$restaurants = Restaurant::all();
-        return view('restaurants.index', compact('restaurants'));
- 
+    public function index(Request $request)
+    {
+        
+        $keyword = $request->keyword;
+
+        if ($request->category !== null) {
+            $restaurants = Restaurant::where('category_id', $request->category)->paginate(15);
+            $total_count = Restaurant::where('category_id', $request->category)->count();
+            $category = Category::find($request->category);
+        
+        } elseif ($keyword !== null) {
+            $restaurants = Restaurant::where('name', 'like', "%{$keyword}%")->paginate(15);
+            $total_count = $restaurants->total();
+            $category = null;
+
+        
+        } else {
+            $restaurants = Restaurant::all();
+            $total_count = "";
+            $category = null;
+        }
+
+
+        $categories = Category::all();
+
+        return view('restaurants.index', compact('restaurants','categories','total_count', 'keyword'));
     }
 
     /**
@@ -47,7 +70,9 @@ class RestautantController extends Controller
      */
     public function show(Restaurant $restaurant)
     {
-        return view('restaurants.show', compact('restaurant'));
+        $reviews = $restaurant->reviews()->get();
+
+        return view('restaurants.show', compact('restaurant', 'reviews'));
     }
 
     /**

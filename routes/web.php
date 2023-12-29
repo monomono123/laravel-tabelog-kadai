@@ -6,6 +6,7 @@ use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ReservationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,5 +47,9 @@ Route::post('favorites/{restautant_id}', [FavoriteController::class, 'store'])->
     Route::get('users/mypage', 'mypage')->name('mypage');
     Route::get('users/mypage/edit', 'edit')->name('mypage.edit');
     Route::put('users/mypage', 'update')->name('mypage.update');
+
+    Route::get('users/mypage/reservations', 'reservations')->name('mypage.reservations');
     });
  });
+
+ Route::resource('reservations', ReservationController::class);

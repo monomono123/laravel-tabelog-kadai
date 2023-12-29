@@ -13,8 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('reviews', function (Blueprint $table) {
-            $table->integer('star')->unsigned()->default(0);
+        Schema::create('reservations', function (Blueprint $table) {
+            $table->id();
+            $table->integer('user_id')->unsigned();
+            $table->integer('restaurant_id')->unsigned();
+            $table->string('reservationday');
+            $table->string('reservationnumber');
+            $table->timestamps();
         });
     }
 
@@ -25,8 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('reviews', function (Blueprint $table) {
-            $table->dropColumn('star');
-        });
+        Schema::dropIfExists('reservations');
     }
 };

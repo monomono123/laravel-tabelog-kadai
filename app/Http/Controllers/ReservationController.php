@@ -75,6 +75,8 @@ class ReservationController extends Controller
         
          $reservation->save();            
          return redirect()->route('restaurants.show',$restaurant->id)->with('message', '予約が完了しました。');;
+
+         
     }
 
     /**
@@ -120,7 +122,7 @@ class ReservationController extends Controller
     public function destroy(Reservation $reservation)
     {
         $reservation->delete();
-        
+
         return redirect()->route('mypage.reservations')->with('message', '予約をキャンセルしました。');
     }
 }

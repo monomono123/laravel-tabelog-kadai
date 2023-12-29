@@ -15,12 +15,11 @@
                      </div>
                      <div class="col-9 d-flex align-items-center ms-2 mt-3">
                          <div class="d-flex flex-column">
-                             <button type="submit" class="btn btn-primary" label for="user-name">会員情報の編集</label></button>
+                         <a class="btn btn-primary" label for="user-name" href="{{route('mypage.edit')}}">会員情報の編集</a>
                          </div>
                      </div>
                  </div>
                  <div class="d-flex align-items-center">
-                     <a href="{{route('mypage.edit')}}">
                          <i class="fas fa-chevron-right fa-2x"></i>
                      </a>
                  </div>
@@ -37,7 +36,7 @@
                      </div>
                      <div class="col-9 d-flex align-items-center ms-2 mt-3">
                          <div class="d-flex flex-column">
-                             <button type="submit" class="btn btn-primary" label for="user-name">予約</label></button>
+                         <a class="btn btn-primary" label for="user-name" href="{{route('mypage.reservations')}}">予約確認</a>
                          </div>
                      </div>
                  </div>
@@ -59,12 +58,11 @@
                      </div>
                      <div class="col-9 d-flex align-items-center ms-2 mt-3">
                          <div class="d-flex flex-column">
-                             <button type="submit" class="btn btn-primary" label for="user-name">ログアウト</label></button>
+                         <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">ログアウト</a>
                          </div>
                      </div>
                  </div>
                  <div class="d-flex align-items-center">
-                     <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                          <i class="fas fa-chevron-right fa-2x"></i>
                      </a>
  

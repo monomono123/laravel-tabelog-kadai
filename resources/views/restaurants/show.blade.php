@@ -86,7 +86,7 @@
                      <form method="POST" action="{{ route('reviews.store') }}">
                          @csrf
                          <h4>評価</h4>
-                         <select name="score" class="form-control m-2 review-star">
+                         <select name="star" class="form-control m-2 review-star">
                              <option value="5" class="review-star">★★★★★</option>
                              <option value="4" class="review-star">★★★★</option>
                              <option value="3" class="review-star">★★★</option>

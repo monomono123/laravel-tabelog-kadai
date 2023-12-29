@@ -13,10 +13,6 @@ class UserController extends Controller
          $user = Auth::user();
  
          return view('users.mypage', compact('user'));
-
-
-         $user = Auth::user();
-    $reservations = $user->reservations()->where(reservationday, '>', date('Y-m-d H:i:s'))->get();
      }
 
     /**
@@ -51,6 +47,14 @@ class UserController extends Controller
          $user->update();
  
          return to_route('mypage');
+    }
+
+
+    public function reservations()
+    {
+        $user = Auth::user();
+        $reservations = $user->reservations()->where(reservationday, '>', date('Y-m-d H:i:s'))->get();
+        return view('users.reservations', compact('reservations'));
     }
 
 }

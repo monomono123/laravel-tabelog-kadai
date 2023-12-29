@@ -15,8 +15,7 @@
                      </div>
                      <div class="col-9 d-flex align-items-center ms-2 mt-3">
                          <div class="d-flex flex-column">
-                             <label for="user-name">会員情報の編集</label>
-                             <p>アカウント情報の編集</p>
+                             <button type="submit" class="btn btn-primary" label for="user-name">会員情報の編集</label></button>
                          </div>
                      </div>
                  </div>
@@ -38,13 +37,12 @@
                      </div>
                      <div class="col-9 d-flex align-items-center ms-2 mt-3">
                          <div class="d-flex flex-column">
-                             <label for="user-name">注文履歴</label>
-                             <p>注文履歴を確認できます</p>
+                             <button type="submit" class="btn btn-primary" label for="user-name">予約</label></button>
                          </div>
                      </div>
                  </div>
                  <div class="d-flex align-items-center">
-                     <a href="{{route('mypage')}}">
+                     <a href="{{('mypage')}}">
                          <i class="fas fa-chevron-right fa-2x"></i>
                      </a>
                  </div>
@@ -61,8 +59,7 @@
                      </div>
                      <div class="col-9 d-flex align-items-center ms-2 mt-3">
                          <div class="d-flex flex-column">
-                             <label for="user-name">ログアウト</label>
-                             <p>ログアウトします</p>
+                             <button type="submit" class="btn btn-primary" label for="user-name">ログアウト</label></button>
                          </div>
                      </div>
                  </div>

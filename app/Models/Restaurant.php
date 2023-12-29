@@ -22,4 +22,11 @@ class Restaurant extends Model
     public function favorited_users() {
         return $this->belongsToMany(User::class)->withTimestamps();
     }
+
+    public function reservations()
+    {
+        return $this->hasMany(Reservation::class);
+    }
+
+    
 }

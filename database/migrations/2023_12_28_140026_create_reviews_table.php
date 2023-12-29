@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->text('content');
             $table->integer('user_id');
-            $table->integer('star');
+            
             $table->integer('restaurant_id');
             $table->timestamps();
         });

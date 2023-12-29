@@ -54,3 +54,5 @@ Route::post('favorites/{restautant_id}', [FavoriteController::class, 'store'])->
  });
 
  Route::resource('reservations', ReservationController::class);
+
+ Route::resource('users','UsersController',['only'=>['show','destroy']]);

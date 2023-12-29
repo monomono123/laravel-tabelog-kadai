@@ -9,11 +9,7 @@
  
  <div style="width:40rem;margin:5rem auto;">
  </div>
- @if ($restaurant->image)
-   <img src="{{ asset($restaurant->image) }}" class="w-100 img-fluid">
-   @else
-   <img src="{{ asset('img/dummy.png')}}" class="w-100 img-fluid">
-   @endif
+ 
  
             <div class="card" style="width:40rem;margin:5rem auto;">
                 <img src="{{ asset($restaurant->image) }}" alt="{{ $restaurant->name }}" class="card-img-top">

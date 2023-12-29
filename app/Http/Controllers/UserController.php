@@ -57,4 +57,11 @@ class UserController extends Controller
         return view('users.reservations', compact('reservations'));
     }
 
+    public function destroy(Restautant $restautant)
+    {
+        $restautant->delete();
+
+        return to_route('restautants.index');
+    }
+
 }

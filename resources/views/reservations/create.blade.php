@@ -1,5 +1,8 @@
+<html>
+    <head>
 <h1>{{$restaurant->name}}</h1>
 <form action="{{ route('reservations.store') }}" method="POST">
+<link rel="stylesheet" href="{{ asset('/css/tabelog.css') }}">
 
     @csrf
     @if (isset($errors))
@@ -31,7 +34,9 @@
      <input type="hidden" name="restaurant_id" value="{{$restaurant->id}}">
 
      <div>
-         <button type="submit" class="btn btn-success">予約確定</button>
+         <button type="submit" class="btn btn-success reservation-button">予約確定</button>
      </div>
  
  </form>
+</head>
+</html>

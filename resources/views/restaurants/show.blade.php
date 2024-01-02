@@ -52,7 +52,7 @@
 
 
     @auth
- @if(Auth::user()->favorite_restautants()->where('restaurant_id', $restaurant->id)->exists())
+    @if(Auth::user()->favorite_restaurants()->where('restaurant_id', $restaurant->id)->exists())
     <a href="{{ route('restaurants.favorite', $restaurant) }}" class="btn restaurant-favorite-button text-favorite w-100">
         <i class="fa fa-heart"></i>
                 お気に入り解除

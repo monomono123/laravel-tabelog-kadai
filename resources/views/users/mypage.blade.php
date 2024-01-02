@@ -2,6 +2,7 @@
  
  @section('content')
  <div class="container d-flex justify-content-center mt-3">
+ <link rel="stylesheet" href="{{ asset('/css/tabelog.css') }}">
      <div class="w-50">
          <h1>マイページ</h1>
  

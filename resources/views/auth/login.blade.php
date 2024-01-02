@@ -1,4 +1,6 @@
 <x-guest-layout>
+
+<link rel="stylesheet" href="{{ asset('/css/tabelog.css') }}">
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
 

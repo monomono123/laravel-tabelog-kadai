@@ -46,7 +46,7 @@ class UserController extends Controller
          $user->phone = $request->input('phone') ? $request->input('phone') : $user->phone;
          $user->update();
  
-         return to_route('mypage');
+         return to_route('mypage')->with('flash_message', '会員情報を更新しました。');
     }
 
 
@@ -57,11 +57,11 @@ class UserController extends Controller
         return view('users.reservations', compact('reservations'));
     }
 
-    public function destroy(Restautant $restautant)
+    public function destroy(Restaurant $restaurant)
     {
-        $restautant->delete();
+        $restaurant->delete();
 
-        return to_route('restautants.index');
+        return to_route('restaurants.index');
     }
 
 }

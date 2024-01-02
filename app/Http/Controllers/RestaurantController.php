@@ -6,7 +6,7 @@ use App\Models\Restaurant;
 use Illuminate\Http\Request;
 use App\Models\Category;
 
-class RestautantController extends Controller
+class RestaurantController extends Controller
 {
     /**
      * Display a listing of the resource.

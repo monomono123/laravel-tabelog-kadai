@@ -61,11 +61,15 @@ class ReservationController extends Controller
             if(array_search($holiday,$week_jp) == $reservationday->format('w')){
                 return back()->withErrors(['message' => '定休日です。']);
             }
-        }$time_start_end = explode('～',$restaurant->time);
-
-        if($time_start_end[0] > $reservationday->format('H:i') || $time_start_end[1] < $reservationday->format('H:i')){
-             return back()->withErrors(['message' => '営業時間外です。']);
-         }
+        }
+        if (false !== strpos($restaurant->time, '～')) {
+            $time_start_end = explode('～',$restaurant->time);
+            
+                    if($time_start_end[0] > $reservationday->format('H:i') || $time_start_end[1] < $reservationday->format('H:i')){
+                         return back()->withErrors(['message' => '営業時間外です。']);
+                     }
+            }
+            
 
          $reservation = new Reservation();
          $reservation->restaurant_id = $request->input('restaurant_id');

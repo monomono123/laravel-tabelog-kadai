@@ -57,9 +57,11 @@ class UserController extends Controller
         return view('users.reservations', compact('reservations'));
     }
 
-    public function destroy(Restaurant $restaurant)
+    public function destroy()
     {
         $restaurant->delete();
+        $user = Auth::user();
+        $user->delete();
 
         return to_route('restaurants.index');
     }

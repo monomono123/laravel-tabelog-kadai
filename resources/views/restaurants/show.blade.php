@@ -53,16 +53,26 @@
 
     @auth
     @if(Auth::user()->favorite_restaurants()->where('restaurant_id', $restaurant->id)->exists())
-    <a href="{{ route('restaurants.favorite', $restaurant) }}" class="btn restaurant-favorite-button text-favorite w-100">
-        <i class="fa fa-heart"></i>
-                お気に入り解除
-    </a>
+      <a href="{{ route('favorites.destroy', $restaurant->id) }}" class="btn restaurant-favorite-button text-favorite w-100" onclick="event.preventDefault(); document.getElementById('favorites-destroy-form').submit();">
+       <i class="fa fa-heart"></i>
+        お気に入り解除
+      </a>
     @else
-    <a href="{{ route('favorites.store', $restaurant->id) }}" class="btn btn-success text-favorite w-100" onclick="event.preventDefault(); document.getElementById('favorites-store-form').submit();">
-        <i class="fa fa-heart"></i>
-            お気に入り
-    </a>
-    @endif
+      <a href="{{ route('favorites.store', $restaurant->id) }}" class="btn restaurant-favorite-button text-favorite w-100" onclick="event.preventDefault(); document.getElementById('favorites-store-form').submit();">
+         <i class="fa fa-heart"></i>
+          お気に入り
+       </a>
+       @endif
+
+       <form id="favorites-destroy-form" action="{{ route('favorites.destroy', $restaurant->id) }}" method="POST" class="d-none">
+                     @csrf
+                     @method('DELETE')
+                 </form>
+                 <form id="favorites-store-form" action="{{ route('favorites.store', $restaurant->id) }}" method="POST" class="d-none">
+                     @csrf
+                 </form>
+
+                            
     @endauth
 
        <div class="offset-1 col-10">

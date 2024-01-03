@@ -18,7 +18,7 @@
                      <div class="d-flex justify-content-between">
                          <label for="name" class="text-md-left samuraimart-edit-user-info-label">氏名</label>
                      </div>
-                     <div class="collapse show editUserName">
+                     <div class="show editUserName">
                          <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ $user->name }}" required autocomplete="name" autofocus placeholder="侍 太郎">
                          @error('name')
                          <span class="invalid-feedback" role="alert">

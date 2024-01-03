@@ -7,6 +7,8 @@ use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\User\Ajax\SubscriptionController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -61,12 +63,12 @@ Route::post('favorites/{restaurant_id}', [FavoriteController::class, 'store'])->
  Route::prefix('user')->middleware(['auth'])->group(function() {
 
     // 課金
-    Route::get('subscription', 'User\SubscriptionController@index');
-    Route::get('ajax/subscription/status', 'User\Ajax\SubscriptionController@status');
-    Route::post('ajax/subscription/subscribe', 'User\Ajax\SubscriptionController@subscribe');
-    Route::post('ajax/subscription/cancel', 'User\Ajax\SubscriptionController@cancel');
-    Route::post('ajax/subscription/resume', 'User\Ajax\SubscriptionController@resume');
-    Route::post('ajax/subscription/change_plan', 'User\Ajax\SubscriptionController@change_plan');
-    Route::post('ajax/subscription/update_card', 'User\Ajax\SubscriptionController@update_card');
+    Route::get('subscription', [SubscriptionController::class,'index']);
+    Route::get('ajax/subscription/status', [SubscriptionController::class, 'status']);
+    Route::post('ajax/subscription/subscribe', [SubscriptionController::class,'subscribe']);
+    Route::post('ajax/subscription/cancel', [SubscriptionController::class,'cancel']);
+    Route::post('ajax/subscription/resume', [SubscriptionController::class, 'resume']);
+    Route::post('ajax/subscription/change_plan', [SubscriptionController::class, 'change_plan']);
+    Route::post('ajax/subscription/update_card', [SubscriptionController::class, 'update_card']);
 
 });

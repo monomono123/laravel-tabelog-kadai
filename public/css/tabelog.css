@@ -82,3 +82,9 @@
   color: #b2b2b2;
   background-color: #d94b0e;
 }
+
+.restaurant-favorite-add-cart {
+  border-radius: 2px;
+  color: #ffffff;
+  background-color: #ff69b4;
+}

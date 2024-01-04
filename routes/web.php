@@ -53,6 +53,7 @@ Route::post('favorites/{restaurant_id}', [FavoriteController::class, 'store'])->
 
     Route::get('users/mypage/reservations', 'reservations')->name('mypage.reservations');
     Route::delete('users/mypage/delete', 'destroy')->name('mypage.destroy');
+    Route::get('users/mypage/favorite', 'favorite')->name('mypage.favorite');
     });
  });
 
@@ -60,7 +61,7 @@ Route::post('favorites/{restaurant_id}', [FavoriteController::class, 'store'])->
 
  Route::resource('users','UsersController',['only'=>['show','destroy']]);
 
- Route::prefix('user')->middleware(['auth'])->group(function() {
+ Route::prefix('users')->middleware(['auth'])->group(function() {
 
     // 課金
     Route::get('subscription', [SubscriptionController::class,'index']);

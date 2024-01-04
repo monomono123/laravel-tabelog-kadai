@@ -19,18 +19,17 @@ class RestaurantController extends Controller
         $keyword = $request->keyword;
 
         if ($request->category !== null) {
-            $restaurants = Restaurant::where('category_id', $request->category)->paginate(15);
+            $restaurants = Restaurant::where('category_id', $request->category)->paginate(10);
             $total_count = Restaurant::where('category_id', $request->category)->count();
             $category = Category::find($request->category);
-        
+
         } elseif ($keyword !== null) {
             $restaurants = Restaurant::where('name', 'like', "%{$keyword}%")->paginate(15);
             $total_count = $restaurants->total();
             $category = null;
-
         
         } else {
-            $restaurants = Restaurant::all();
+            $restaurants = Restaurant::paginate(10);
             $total_count = "";
             $category = null;
         }
@@ -38,7 +37,7 @@ class RestaurantController extends Controller
 
         $categories = Category::all();
 
-        return view('restaurants.index', compact('restaurants','categories','total_count', 'keyword'));
+        return view('restaurants.index', compact('restaurants','category', 'categories','total_count', 'keyword'));
     }
 
     /**

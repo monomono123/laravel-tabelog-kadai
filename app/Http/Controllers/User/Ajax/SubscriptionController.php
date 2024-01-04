@@ -94,4 +94,12 @@ class SubscriptionController extends Controller
         ];
 
     }
+
+    public function index(){
+        $stripe_id = env('STRIPE_KEY');
+        $user = Auth::user();
+        $intent = Auth::user()->createSetupIntent();
+        return view('users.subscription.index',compact('intent','stripe_id','user'));
+       }
+       
 }

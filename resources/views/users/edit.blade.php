@@ -33,7 +33,7 @@
                      <div class="d-flex justify-content-between">
                          <label for="email" class="text-md-left samuraimart-edit-user-info-label">メールアドレス</label>
                      </div>
-                     <div class="collapse show editUserMail">
+                     <div class="show editUserMail">
                          <input id="email" type="text" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $user->email }}" required autocomplete="email" autofocus placeholder="samurai@samurai.com">
                          @error('email')
                          <span class="invalid-feedback" role="alert">
@@ -48,7 +48,7 @@
                      <div class="d-flex justify-content-between">
                          <label for="postal_code" class="text-md-left samuraimart-edit-user-info-label">郵便番号</label>
                      </div>
-                     <div class="collapse show editUserPhone">
+                     <div class="show editUserPhone">
                          <input id="postal_code" type="text" class="form-control @error('postal_code') is-invalid @enderror" name="postal_code" value="{{ $user->postal_code }}" required autocomplete="postal_code" autofocus placeholder="XXX-XXXX">
                          @error('postal_code')
                          <span class="invalid-feedback" role="alert">
@@ -63,7 +63,7 @@
                      <div class="d-flex justify-content-between">
                          <label for="address" class="text-md-left samuraimart-edit-user-info-label">住所</label>
                      </div>
-                     <div class="collapse show editUserPhone">
+                     <div class="show editUserPhone">
                          <input id="address" type="text" class="form-control @error('address') is-invalid @enderror" name="address" value="{{ $user->address }}" required autocomplete="address" autofocus placeholder="東京都渋谷区道玄坂X-X-X">
                          @error('address')
                          <span class="invalid-feedback" role="alert">
@@ -78,7 +78,7 @@
                      <div class="d-flex justify-content-between">
                          <label for="phone" class="text-md-left samuraimart-edit-user-info-label">電話番号</label>
                      </div>
-                     <div class="collapse show editUserPhone">
+                     <div class="show editUserPhone">
                          <input id="phone" type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ $user->phone }}" required autocomplete="phone" autofocus placeholder="XXX-XXXX-XXXX">
                          @error('phone')
                          <span class="invalid-feedback" role="alert">

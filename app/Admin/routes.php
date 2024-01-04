@@ -5,6 +5,7 @@ use App\Admin\Controllers\CategoryController;
 use App\Admin\Controllers\ReservationController;
 use App\Admin\Controllers\RestaurantController;
 use App\Admin\Controllers\UserController;
+use App\Admin\Controllers\ReviewController;
 
 Admin::routes();
 
@@ -20,5 +21,6 @@ Route::group([
     $router->resource('reservations', ReservationController::class);
     $router->resource('restaurants', RestaurantController::class);
     $router->resource('users', UserController::class);
+    $router->resource('reviews', ReviewController::class);
 
 });

@@ -59,11 +59,19 @@ class UserController extends Controller
 
     public function destroy()
     {
-        $restaurant->delete();
         $user = Auth::user();
         $user->delete();
 
         return to_route('restaurants.index');
     }
+
+    public function favorite()
+     {
+         $user = Auth::user();
+ 
+         $favorite_restaurants = $user->favorite_restaurants;
+ 
+         return view('users.favorite', compact('favorite_restaurants'));
+     }
 
 }

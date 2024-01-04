@@ -59,7 +59,7 @@
                      </div>
                      <div class="col-9 d-flex align-items-center ms-2 mt-3">
                          <div class="d-flex flex-column">
-                         <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">ログアウト</a>
+                         <a class="btn btn-danger" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">ログアウト</a>
                          </div>
                      </div>
                  </div>

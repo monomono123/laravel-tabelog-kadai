@@ -89,7 +89,7 @@
                  </div>
  
                  <hr>
-                 <button type="submit" class="btn samuraimart-submit-button mt-3 w-25">
+                 <button type="submit" class="btn btn-primary mt-3 w-25">
                      保存
                  </button>
              </form>
@@ -99,7 +99,7 @@
                  <form method="POST" action="{{ route('mypage.destroy') }}">
                      @csrf
                      <input type="hidden" name="_method" value="DELETE">
-                     <div class="btn dashboard-delete-link" data-bs-toggle="modal" data-bs-target="#delete-user-confirm-modal">退会する</div>
+                     <div class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete-user-confirm-modal">退会する</div>
  
                      <div class="modal fade" id="delete-user-confirm-modal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                          <div class="modal-dialog">

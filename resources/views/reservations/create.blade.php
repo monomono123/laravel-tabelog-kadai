@@ -21,6 +21,7 @@
      <div>
          <strong>予約名</strong>
          <p>{{$user_name}}</p>
+         
      </div>
      <div>
          <strong>予約人数</strong>
@@ -34,7 +35,7 @@
      <input type="hidden" name="restaurant_id" value="{{$restaurant->id}}">
 
      <div>
-         <button type="submit" class="btn btn-success reservation-button">予約確定</button>
+         <button type="submit" class="btn btn-primary">予約確定</button>
      </div>
  
  </form>

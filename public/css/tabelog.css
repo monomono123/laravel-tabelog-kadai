@@ -54,22 +54,16 @@
   color: #0fbe9f;
 }
 
-.restaurant-favorite-button {
-  border-radius: 2px;
-  border: solid 1px #ff69b4;
-  background-color: #fffafa;
-}
-
-.text-favorite {
-  color: #ff69b4;
+.row {
+color: #097864;
 }
 
 .review-star {
-  color: #ff69b4;
+  color: #0fbe9f;
 }
 
 .review-star:focus {
-  color: #ff69b4;
+  color: #0fbe9f;
 }
 
 .restaurant-delete-submit-button {
@@ -87,4 +81,10 @@
   border-radius: 2px;
   color: #ffffff;
   background-color: #ff69b4;
+}
+
+
+.reservation-table {
+  font-size: 2px;
+  color: #87cefa;
 }

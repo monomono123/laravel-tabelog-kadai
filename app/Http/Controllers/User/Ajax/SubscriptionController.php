@@ -4,6 +4,8 @@ namespace App\Http\Controllers\User\Ajax;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class SubscriptionController extends Controller
 {
@@ -99,6 +101,7 @@ class SubscriptionController extends Controller
         $stripe_id = env('STRIPE_KEY');
         $user = Auth::user();
         $intent = Auth::user()->createSetupIntent();
+
         return view('users.subscription.index',compact('intent','stripe_id','user'));
        }
        

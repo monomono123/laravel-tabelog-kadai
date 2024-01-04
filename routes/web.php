@@ -59,7 +59,6 @@ Route::post('favorites/{restaurant_id}', [FavoriteController::class, 'store'])->
 
  Route::resource('reservations', ReservationController::class);
 
- Route::resource('users','UsersController',['only'=>['show','destroy']]);
 
  Route::prefix('users')->middleware(['auth'])->group(function() {
 

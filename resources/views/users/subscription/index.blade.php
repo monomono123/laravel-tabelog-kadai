@@ -1,244 +1,103 @@
-<html>
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
-    <style>
 
-        body {
-
-            padding: 15px;
-
-        }
-
-        #new-card, #update-card {
-
-            border: 1px solid #ccc;
-            padding: 8px;
-
-        }
-
-    </style>
-</head>
-<body>
-<div id="app" class="container">
-    <h1 class="mb-4">Stripeを使った月額課金・サンプル</h1>
-    <div class="row">
-        <div class="offset-3 col-6">
-            <div class="card mb-4">
-                <div class="card-body bg-light">
-                    <div v-if="!isSubscribed">
-                        <div class="form-group">
-                            <select class="form-control" v-model="plan">
-                                <option v-for="(value,key) in planOptions" :value="key" v-text="value"></option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" class="form-control" v-model="cardHolderName" placeholder="名義人（半角ローマ字）">
-                        </div>
-                        <div class="form-group">
-                            <div id="new-card" class="bg-white"></div>
-                        </div>
-                        <div class="form-group text-right">
-                            <button
-                                type="button"
-                                class="btn btn-primary"
-                                data-secret="{{ $intent->client_secret }}"
-                                @click="subscribe">
-                                課金する
-                            </button>
-                        </div>
-                    </div>
-                    <div v-else-if="isSubscribed">
-                        <div v-if="isCancelled">
-                            キャンセル済みです。（終了：<span v-text="details.end_date"></span>）
-                            <button class="btn btn-info" type="button" @click="resume">元に戻す</button>
-                        </div>
-                        <!-- 課金中 -->
-                        <div v-else>
-                            <div class="mb-3">現在、課金中です。</div>
-                            <button class="btn btn-warning" type="button" @click="cancel">キャンセル</button>
-                            <hr>
-                            <div class="form-group">
-                                課金中のプラン： <span v-text="details.plan"></span>
-                            </div>
-                            <div class="form-group">
-                                <select class="form-control" v-model="plan">
-                                    <option v-for="(value,key) in planOptions" :value="key" v-text="value"></option>
-                                </select><br>
-                                <button class="btn btn-success" type="button" @click="changePlan">プランを変更する</button>
-                            </div>
-                            <hr>
-                            <div class="form-group">
-                                カード情報（下４桁）： <span v-text="details.card_last_four"></span>
-                            </div>
-                            <div class="form-group">
-                                <input type="text" class="form-control" v-model="cardHolderName" placeholder="名義人（半角ローマ字）">
-                            </div>
-                            <div class="form-group">
-                                <div id="update-card" class="bg-white"></div><br>
-                                <button
-                                    type="button"
-                                    class="btn btn-secondary"
-                                    data-secret="{{ $intent->client_secret }}"
-                                    @click="updateCard">
-                                    クレジットカードを変更する
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-body">
-                    <h5>テスト入力について</h5>
-                    <hr>
-                    <strong>名義人：</strong> 半角ローマ字ならなんでもOK<br>
-                    <strong>カード番号：</strong> <a href="https://stripe.com/docs/testing#cards" target="_blank">テスト用のカード番号</a>に用意されています。なお、年／月は未来の日付ならいつでもOKで、CVCも数字ならなんでもOKです。
-                </div>
-            </div>
-        </div>
+@extends('layouts.app')
+@section('content')
+<div class="container">
+    <div class="col-md-6">
+    @if(!$user->subscribed('main'))
+        <div id="alert" role="alert" style="display:none">カードが認証できませんでした。</div>
+        <form id="card_form" action="ajax/subscription/subscribe" method="POST">
+        @csrf
+        <table class="table mt-4 col-md-6">
+            <tbody>
+                <tr>
+                    <th class="text-center">カード名義</th>
+                    <td><input id="card_name" class="form-control" type="text" placeholder="山田 花子" name="card_name"></td>
+                </tr>
+                <tr>
+                    <th class="text-center">カード番号</th>
+                    <td><div id="card-element"></div></td>
+                </tr>
+            </tbody>
+        </table>
+        <button id="card_submit" class="btn btn btn-primary w-100"
+        data-secret="{{ $intent->client_secret }}">有料会員になる</button>
+        </form>
+    @else
+    <div id="alert" class="alert alert-warning my-2" role="alert" style="display:none">カードが認証できませんでした。</div>
+    <form id="card_form" action="ajax/subscription/update_card" method="POST">
+        @csrf
+        <p>{{$user->defaultPaymentMethod()->billing_details->name}}</p>
+        <p>**** **** **** {{$user->defaultPaymentMethod()->card->last4}}</p>
+        <table class="table mt-4 col-md-6">
+            <tbody>
+                <tr>
+                    <th class="text-center">カード名義</th>
+                    <td><input id="card_name" class="form-control" type="text" placeholder="山田 花子" name="card_name"></td>
+                </tr>
+                <tr>
+                    <th class="text-center">カード番号</th>
+                    <td><div id="card-element"></div></td>
+                </tr>
+            </tbody>
+        </table>
+        <button id="card_submit" class="btn btn btn-primary w-100"
+        data-secret="{{ $intent->client_secret }}">カードを変更する</button>
+    </form>
+    <a href="ajax/subscription/cancel" onClick="return confirm('本当に有料会員をやめてよろしいですか？');"><div class="btn btn btn-outline-danger w-100" >有料会員をやめる</div></a>
+    @endif
     </div>
 </div>
 <script src="https://js.stripe.com/v3/"></script>
-<script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
 <script>
-
-    new Vue({
-        el: '#app',
-        data: {
-            stripe: null,
-            stripeCard: null,
-            publicKey: '{{ config('services.stripe.key') }}',
-            status: '',
-            cardHolderName: '',
-            details: {},
-            plan: '',
-            planOptions: {!! json_encode(config('services.stripe.plans')) !!}
-        },
-        methods: {
-            async subscribe(e) {
-
-                const paymentMethod = await this.getPaymentMethod(e.target);
-                const url = '/user/ajax/subscription/subscribe';
-                const params = {
-                    payment_method: paymentMethod,
-                    plan: this.plan
-                };
-                axios.post(url, params)
-                    .then(response => {
-
-                        location.reload();
-
-                    });
-
-            },
-            cancel() {
-
-                const url = '/user/ajax/subscription/cancel';
-                axios.post(url)
-                    .then(this.setStatus);
-
-            },
-            resume() {
-
-                const url = '/user/ajax/subscription/resume';
-                axios.post(url)
-                    .then(this.setStatus);
-
-            },
-            changePlan() {
-
-                const url = '/user/ajax/subscription/change_plan';
-                const params = { plan: this.plan };
-                axios.post(url, params)
-                    .then(this.setStatus);
-
-            },
-            async updateCard(e) {
-
-                const paymentMethod = await this.getPaymentMethod(e.target);
-                const url = '/user/ajax/subscription/update_card';
-                const params = { payment_method: paymentMethod };
-                axios.post(url, params)
-                    .then(response => {
-
-                        location.reload();
-
-                    });
-
-            },
-            setStatus(response) {
-
-                this.status = response.data.status;
-                this.details = response.data.details;
-
-            },
-            async getPaymentMethod(target) {
-
-                const clientSecret = target.dataset.secret;
-                const { setupIntent, error } = await this.stripe.confirmCardSetup(
-                    clientSecret, {
-                        payment_method: {
-                            card: this.stripeCard,
-                            billing_details: { name: this.cardHolderName }
-                        }
-                    }
-                );
-
-                if (error) {
-
-                    console.log(error);
-
-                } else {
-
-                    return setupIntent.payment_method;
-
-                }
-
+    let stripe = Stripe("{{$stripe_id}}");
+    let elements = stripe.elements();
+    let style = {
+            base: {
+            color: "#32325d",
+            fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+            fontSmoothing: "antialiased",
+            fontSize: "16px",
+            "::placeholder": {
+            color: "#aab7c4"
             }
         },
-        computed: {
-            isSubscribed() {
-
-                return (this.status === 'subscribed' || this.status === 'cancelled');
-
-            },
-            isCancelled() {
-
-                return (this.status === 'cancelled');
-
-            }
-        },
-        watch: {
-            status(value) {
-
-                Vue.nextTick(() => {
-
-                    if(!this.isCancelled) {
-
-                        const selector = (value === 'unsubscribed') ? '#new-card' : '#update-card';
-                        this.stripeCard = this.stripe.elements().create('card', {
-                            hidePostalCode: true
-                        });
-                        this.stripeCard.mount(selector);
-
-                    }
-
-                });
-
-            }
-        },
-        mounted() {
-
-            this.stripe = Stripe(this.publicKey);
-            const url = '/user/ajax/subscription/status';
-            axios.get(url)
-                .then(this.setStatus);
-
+        invalid: {
+            color: "#fa755a",
+            iconColor: "#fa755a"
         }
-    });
+    };
+    
+    let card = elements.create('card', {style: style});
+    card.mount('#card-element');
+    const cardName = document.getElementById('card_name');
+    const cardSubmit = document.getElementById('card_submit');
+    const clientSecret = cardSubmit.dataset.secret;
+    cardSubmit.addEventListener('click', async (e) => {
+        e.preventDefault();
+        const { setupIntent, error } = await stripe.confirmCardSetup(
+        clientSecret, {
+            payment_method: {
+                card: card,
+                billing_details: { name: cardName.value }
+            }
+        }
+    );
+    if (error) {
+        console.log(error);
+        document.getElementById('alert').style.display = "block";
+    } else {
+        stripePaymentHandler(setupIntent.payment_method);
+    }
+});
+function stripePaymentHandler(payment_method) {
+  let form = document.getElementById('card_form');
+  let hiddenInput = document.createElement('input');
+  hiddenInput.setAttribute('type', 'hidden');
+  hiddenInput.setAttribute('name', 'payment_method');
+  hiddenInput.setAttribute('value', payment_method);
+  form.appendChild(hiddenInput);
+  form.submit();
+}
 
 </script>
-</body>
-</html>
+@endsection

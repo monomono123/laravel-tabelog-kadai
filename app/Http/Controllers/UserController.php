@@ -74,4 +74,16 @@ class UserController extends Controller
          return view('users.favorite', compact('favorite_restaurants'));
      }
 
+    
+     public function __construct()
+     {
+        $this->middleware('auth');
+     }
+     public function getUser($id)
+     {
+        $profile = new User();
+        $profile = Auth::user()->find($id);
+        return view('mypage.mypage', ['profile' => $profile, 'id' => $id]);
+     }
+
 }

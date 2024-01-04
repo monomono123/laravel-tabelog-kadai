@@ -9,93 +9,6 @@ use Illuminate\Support\Facades\Auth;
 
 class SubscriptionController extends Controller
 {
-    //課金を実行
-    public function subscribe(Request $request) {
-
-        $user = $request->user();
-
-        if(!$user->subscribed('main')) {
-
-            $payment_method = $request->payment_method;
-            $plan = $request->plan;
-            $user->newSubscription('main', $plan)->create($payment_method);
-            $user->load('subscriptions');
-
-        }
-
-        return $this->status();
-
-    }
-
-    // 課金をキャンセル
-    public function cancel(Request $request) {
-
-        $request->user()
-            ->subscription('main')
-            ->cancel();
-        return $this->status();
-
-    }
-
-    // キャンセルしたものをもとに戻す
-    public function resume(Request $request) {
-
-        $request->user()
-            ->subscription('main')
-            ->resume();
-        return $this->status();
-
-    }
-
-    // カードを変更する
-    public function update_card(Request $request) {
-
-        $payment_method = $request->payment_method;
-        $request->user()
-            ->updateDefaultPaymentMethod($payment_method);
-        return $this->status();
-
-    }
-
-    // 課金状態を返す
-    public function status() {
-
-        $status = 'unsubscribed';
-        $user = auth()->user();
-        $details = [];
-
-        if($user->subscribed('main')) { // 課金履歴あり
-
-            if($user->subscription('main')->cancelled()) {  // キャンセル済み
-
-                $status = 'cancelled';
-
-            } else {    // 課金中
-
-                $status = 'subscribed';
-
-            }
-
-            $subscription = $user->subscriptions->first(function($value){
-
-                return ($value->name === 'main');
-
-            })->only('ends_at', 'stripe_plan');
-
-            $details = [
-                'end_date' => ($subscription['ends_at']) ? $subscription['ends_at']->format('Y-m-d') : null,
-                'plan' => \Arr::get(config('services.stripe.plans'), $subscription['stripe_plan']),
-                'card_last_four' => $user->card_last_four
-            ];
-
-        }
-
-        return [
-            'status' => $status,
-            'details' => $details
-        ];
-
-    }
 
     public function index(){
         $stripe_id = env('STRIPE_KEY');
@@ -104,5 +17,41 @@ class SubscriptionController extends Controller
 
         return view('users.subscription.index',compact('intent','stripe_id','user'));
        }
+
+    //サブスクプラン
+    public function subscribe(Request $request) {
+        if(!$request->user()->subscribed('main')){   
+            $request->user()->newSubscription(
+                'main',
+                env('STRIPE_ID')
+            )->create($request->payment_method);
+            return redirect()->route('mypage')->with('message', '有料会員に登録されました');
+        }
+    }
+
+
+    // キャンセル
+    public function cancel(Request $request) {
+        $user = Auth::user();
+        if($user->subscribed('main')){
+            $request->user()
+                ->subscription('main')
+                ->delete();
+            return redirect()->route('mypage')->with('message', '有料会員を終了しました');
+        }else{
+            return redirect()->route('mypage');
+        }
+    }
+
+
+    // カード情報を変更する
+    public function update_card(Request $request) {
+
+        $payment_method = $request->payment_method;
+        $request->user()
+            ->updateDefaultPaymentMethod($payment_method);
+            return redirect()->route('mypage');
+    }
+
        
 }

@@ -22,6 +22,7 @@ use App\Http\Controllers\User\Ajax\SubscriptionController;
 */
 
 Route::get('/', function () {
+    Route::get('/mypage/{id}', 'UserController@getUser')->name('mypage');
     return to_route('restaurants.index');
 
 });
@@ -39,14 +40,14 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 Route::middleware(['auth', 'verified'])->group(function () {
-Route::resource('restaurants', RestaurantController::class);
+  Route::resource('restaurants', RestaurantController::class);
 
-Route::post('reviews', [ReviewController::class, 'store'])->name('reviews.store');
+  Route::post('reviews', [ReviewController::class, 'store'])->name('reviews.store');
 
-Route::post('favorites/{restaurant_id}', [FavoriteController::class, 'store'])->name('favorites.store');
- Route::delete('favorites/{restaurant_id}', [FavoriteController::class, 'destroy'])->name('favorites.destroy');
+  Route::post('favorites/{restaurant_id}', [FavoriteController::class, 'store'])->name('favorites.store');
+  Route::delete('favorites/{restaurant_id}', [FavoriteController::class, 'destroy'])->name('favorites.destroy');
 
- Route::controller(UserController::class)->group(function () {
+  Route::controller(UserController::class)->group(function () {
     Route::get('users/mypage', 'mypage')->name('mypage');
     Route::get('users/mypage/edit', 'edit')->name('mypage.edit');
     Route::put('users/mypage', 'update')->name('mypage.update');
@@ -59,16 +60,14 @@ Route::post('favorites/{restaurant_id}', [FavoriteController::class, 'store'])->
 
  Route::resource('reservations', ReservationController::class);
 
-
  Route::prefix('users')->middleware(['auth'])->group(function() {
 
-    // 課金
-    Route::get('subscription', [SubscriptionController::class,'index']);
-    Route::get('ajax/subscription/status', [SubscriptionController::class, 'status']);
-    Route::post('ajax/subscription/subscribe', [SubscriptionController::class,'subscribe']);
-    Route::post('ajax/subscription/cancel', [SubscriptionController::class,'cancel']);
-    Route::post('ajax/subscription/resume', [SubscriptionController::class, 'resume']);
-    Route::post('ajax/subscription/change_plan', [SubscriptionController::class, 'change_plan']);
-    Route::post('ajax/subscription/update_card', [SubscriptionController::class, 'update_card']);
+ Route::get('/mypage/{id}', 'UserController@getUser')->name('mypage')
 
+ // 課金
+Route::get('subscription', [SubscriptionController::class,'index']);
+Route::post('ajax/subscription/subscribe', [SubscriptionController::class,'subscribe']);
+Route::post('ajax/subscription/cancel', [SubscriptionController::class,'cancel']);
+Route::post('ajax/subscription/update_card', [SubscriptionController::class, 'update_card']);
 });
+

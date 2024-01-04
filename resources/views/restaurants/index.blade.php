@@ -20,9 +20,9 @@
             <div class="row w-100">
                 @foreach($restaurants as $restaurant)
                 {{ $restaurant->name }}
-{{ $restaurant->category_id}}
-{{ $restaurant->time }}
-{{ $restaurant->holiday }}
+                {{ $restaurant->category_id}}
+                {{ $restaurant->time }}
+                {{ $restaurant->holiday }}
                 <div class="col-3">
                     <a href="{{route('restaurants.show', $restaurant)}}">
                         <img src="{{ asset('img/dummy.png')}}" class="img-thumbnail">

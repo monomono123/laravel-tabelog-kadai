@@ -10,13 +10,14 @@
         @endcomponent
     </div>
     <div class="col-9">
-         <div class="container">
+     <div class="container">
+        
             @foreach($categories as $cate)
             <a href="{{ route('restaurants.index', ['category' =>$cate->id])}}">
                 {{$cate->name }}</a>
             @endforeach
             <form>
-                <input type='text' name='keyword'>
+                <input type='text' name='keyword' style="width:200px;">
                 <button type='submit' class="btn btn-primary">検索</button> 
             </form>
              @if ($category !== null)
@@ -29,7 +30,7 @@
         @if ($restaurant->image)
                     <img src="{{asset($restaurant->image)}}" class="img-thumbnail">
                     @else
-                    <img src="{{asset('/img/dummy.jpg')}}" class="img-thumbnail">
+                    <img src="{{asset('/img/dummy.png')}}" class="img-thumbnail">
                     @endif
                 @foreach($restaurants as $restaurant)
                 {{ $restaurant->name }}
@@ -44,7 +45,7 @@
                         <div class="col-12">
                             <p class="restaurant-label mt-2">
                                 {{$restaurant->name}}<br>
-                                <label>￥{{$restaurant->price}}</label>
+                                
                             </p>
                         </div>
                     </div>

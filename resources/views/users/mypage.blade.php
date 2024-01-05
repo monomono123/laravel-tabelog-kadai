@@ -14,7 +14,7 @@
                      <div class="col-2 d-flex align-items-center">
                          <i class="fas fa-user fa-3x"></i>
                      </div>
-                     <div class="col-9 d-flex align-items-center ms-2 mt-3">
+                     <div class="col-15 d-flex align-items-center  ms-2 mt-3">
                          <div class="d-flex flex-column">
                          <a class="btn btn-primary" label for="user-name" href="{{route('mypage.edit')}}">会員情報の編集</a>
                          </div>
@@ -35,7 +35,7 @@
                      <div class="col-2 d-flex align-items-center">
                          <i class="fas fa-archive fa-3x"></i>
                      </div>
-                     <div class="col-9 d-flex align-items-center ms-2 mt-3">
+                     <div class="col-15 d-flex align-items-center ms-2 mt-3">
                          <div class="d-flex flex-column">
                          <a class="btn btn-primary" label for="user-name" href="{{route('mypage.reservations')}}">予約確認</a>
                          </div>
@@ -58,7 +58,7 @@
                      <div class="col-2 d-flex align-items-center">
                          <i class="fas fa-user fa-3x"></i>
                      </div>
-                     <div class="col-9 d-flex align-items-center ms-2 mt-3">
+                     <div class="col-15 d-flex align-items-center ms-2 mt-3">
                          <div class="d-flex flex-column">
                          <a class="btn btn-primary" label for="user-name" href="{{route('subscription')}}">有料会員</a>
                          </div>
@@ -82,7 +82,7 @@
                      <div class="col-2 d-flex align-items-center">
                          <i class="fas fa-sign-out-alt fa-3x"></i>
                      </div>
-                     <div class="col-9 d-flex align-items-center ms-2 mt-3">
+                     <div class="col-15 d-flex align-items-center ms-2 mt-3">
                          <div class="d-flex flex-column">
                          <a class="btn btn-danger" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">ログアウト</a>
                          </div>
@@ -98,6 +98,10 @@
                  </div>
              </div>
          </div>
+
+     @if (session('message'))
+    {{ session('message') }}
+    @endif
  
          <hr>
      </div>

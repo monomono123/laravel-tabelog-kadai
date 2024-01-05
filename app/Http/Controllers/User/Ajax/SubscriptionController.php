@@ -50,7 +50,7 @@ class SubscriptionController extends Controller
         $payment_method = $request->payment_method;
         $request->user()
             ->updateDefaultPaymentMethod($payment_method);
-            return redirect()->route('mypage');
+            return redirect()->route('mypage')->with('message', 'カードを変更しました');
     }
 
        

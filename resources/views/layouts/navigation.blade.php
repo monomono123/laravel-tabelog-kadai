@@ -35,7 +35,7 @@
 
                     <x-slot name="content">
                         <x-dropdown-link :href="route('mypage')">
-                            {{ __('Profile') }}
+                            {{ __('マイページ') }}
                         </x-dropdown-link>
 
                         <!-- Authentication -->

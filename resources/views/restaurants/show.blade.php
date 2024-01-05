@@ -12,7 +12,7 @@
  
  
             <div class="card" style="width:40rem;margin:5rem auto;">
-                <img src="{{ asset($restaurant->image) }}" alt="{{ $restaurant->name }}" class="card-img-top">
+                <img src="{{ asset('/img/dummy.png') }}" alt="{{ $restaurant->name }}" class="card-img-top">
                     <div class="card-body">
                         <div class="card-text">
                         <table class="table">
@@ -57,6 +57,7 @@
        <i class="fa fa-heart"></i>
         お気に入り解除
       </a>
+
     @else
       <a href="{{ route('favorites.store', $restaurant->id) }}" class="btn btn-outline-warning text-favorite w-100" onclick="event.preventDefault(); document.getElementById('favorites-store-form').submit();">
          <i class="fa fa-heart"></i>
@@ -111,7 +112,6 @@
                  </div>
              </div>
           </div>
-
     @endauth
 
 @endsection

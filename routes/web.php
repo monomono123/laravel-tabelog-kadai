@@ -62,7 +62,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
  Route::prefix('users')->middleware(['auth'])->group(function() {
 
- Route::get('/mypage/{id}', 'UserController@getUser')->name('mypage')
+ Route::get('/mypage/{id}', 'UserController@getUser')->name('mypage');
 
  // 課金
 Route::get('subscription', [SubscriptionController::class,'index']);

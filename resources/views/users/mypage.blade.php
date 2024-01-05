@@ -42,12 +42,37 @@
                      </div>
                  </div>
                  <div class="d-flex align-items-center">
-                     <a href="{{('mypage')}}">
+                 <a href="{{('mypage')}}">
                          <i class="fas fa-chevron-right fa-2x"></i>
                      </a>
                  </div>
              </div>
          </div>
+
+
+         <hr>
+ 
+         <div class="container">
+             <div class="d-flex justify-content-between">
+                 <div class="row">
+                     <div class="col-2 d-flex align-items-center">
+                         <i class="fas fa-user fa-3x"></i>
+                     </div>
+                     <div class="col-9 d-flex align-items-center ms-2 mt-3">
+                         <div class="d-flex flex-column">
+                         <a class="btn btn-primary" label for="user-name" href="/users/subscription/index.blade.php">有料会員</a>
+                         </div>
+                     </div>
+                 </div>
+                 <div class="d-flex align-items-center">
+                    
+                         <i class="fas fa-chevron-right fa-2x"></i>
+                     </a>
+                 </div>
+             </div>
+         </div>
+ 
+         <hr>
  
          <hr>
  

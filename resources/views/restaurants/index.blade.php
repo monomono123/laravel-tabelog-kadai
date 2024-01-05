@@ -13,7 +13,7 @@
      <div class="container">
         
             @foreach($categories as $cate)
-            <a href="{{ route('restaurants.index', ['category' =>$cate->id])}}">
+            <ul><a href="{{ route('restaurants.index', ['category' =>$cate->id])}}"></ul>
                 {{$cate->name }}</a>
             @endforeach
             <form>

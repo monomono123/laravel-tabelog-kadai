@@ -24,7 +24,7 @@ class RestaurantController extends Controller
             $category = Category::find($request->category);
 
         } elseif ($keyword !== null) {
-            $restaurants = Restaurant::where('name', 'like', "%{$keyword}%")->orWhere('address', 'like', "%{$keyword}%")->paginate(15);
+            $restaurants = Restaurant::where('name', 'like', "%{$keyword}%")->orWhere('address', 'like', "%{$keyword}%")->paginate(10);
             $total_count = $restaurants->total();
             $category = null;
         

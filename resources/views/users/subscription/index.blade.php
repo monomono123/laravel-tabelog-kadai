@@ -67,7 +67,7 @@
         }
     };
     
-    let card = elements.create('card', {style: style});
+    let card = elements.create('card', {style: style, hidePostalCode: true});
     card.mount('#card-element');
     const cardName = document.getElementById('card_name');
     const cardSubmit = document.getElementById('card_submit');

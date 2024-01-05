@@ -60,7 +60,7 @@
                      </div>
                      <div class="col-9 d-flex align-items-center ms-2 mt-3">
                          <div class="d-flex flex-column">
-                         <a class="btn btn-primary" label for="user-name" href="/users/subscription/index.blade.php">有料会員</a>
+                         <a class="btn btn-primary" label for="user-name" href="{{route('subscription')}}">有料会員</a>
                          </div>
                      </div>
                  </div>

@@ -11,6 +11,14 @@
     </div>
     <div class="col-9">
          <div class="container">
+            @foreach($categories as $cate)
+            <a href="{{ route('restaurants.index', ['category' =>$cate->id])}}">
+                {{$cate->name }}</a>
+            @endforeach
+            <form>
+                <input type='text' name='keyword'>
+                <button type='submit' class="btn btn-primary">検索</button> 
+            </form>
              @if ($category !== null)
              <label class="restaurant-category-label"><a href="{{ route('restaurants.index', ['category' => $category->id]) }}">{{ $category->name }}</a></label>
                  <a href="{{ route('restaurants.index') }}">トップ</a> > <a href="#">{{ $category->category_name }}</a> > {{ $category->name }}
@@ -18,7 +26,11 @@
              @endif
          </div>
         <div class="container mt-4">
-            <div class="row w-100">
+        @if ($restaurant->image)
+                    <img src="{{asset($restaurant->image)}}" class="img-thumbnail">
+                    @else
+                    <img src="{{asset('/img/dummy.jpg')}}" class="img-thumbnail">
+                    @endif
                 @foreach($restaurants as $restaurant)
                 {{ $restaurant->name }}
                 {{ $restaurant->category_id}}

@@ -7,6 +7,7 @@ use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Show;
+use App\Models\Category;
 
 class RestaurantController extends AdminController
 {
@@ -84,13 +85,13 @@ class RestaurantController extends AdminController
         $form = new Form(new Restaurant());
 
         $form->text('name', __('Name'));
-        $form->number('category_id', __('Category id'));
+        $form->select('category_id', __('Category id'))->options(Category::all()->pluck('name', 'id'));
         $form->image('image', __('Image'));
         $form->text('discription', __('Discription'));
         $form->number('priceupper', __('Priceupper'));
         $form->number('pricelower', __('Pricelower'));
-        $form->text('time', __('Time'));
-        $form->text('holiday', __('Holiday'));
+        $form->text('time', __('Time'))->placeholder('10:00～20:00');
+        $form->text('holiday', __('Holiday'))->placeholder('土,日');
         $form->text('postcode', __('Postcode'));
         $form->text('address', __('Address'));
         $form->text('telephone', __('Telephone'));

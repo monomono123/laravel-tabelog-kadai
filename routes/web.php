@@ -22,7 +22,7 @@ use App\Http\Controllers\User\Ajax\SubscriptionController;
 */
 
 Route::get('/', function () {
-    Route::get('/mypage/{id}', 'UserController@getUser')->name('mypage');
+   // Route::get('/mypage/{id}', 'UserController@getUser')->name('mypage');
     return to_route('restaurants.index');
 
 });
@@ -62,12 +62,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
  Route::prefix('users')->middleware(['auth'])->group(function() {
 
- Route::get('/mypage/{id}', 'UserController@getUser')->name('mypage');
+// Route::get('/mypage/{id}', 'UserController@getUser')->name('mypage');
 
  // 課金
-Route::get('subscription', [SubscriptionController::class,'index']);
+Route::get('subscription', [SubscriptionController::class,'index'])->name('subscription');
 Route::post('ajax/subscription/subscribe', [SubscriptionController::class,'subscribe']);
-Route::post('ajax/subscription/cancel', [SubscriptionController::class,'cancel']);
+Route::get('ajax/subscription/cancel', [SubscriptionController::class,'cancel']);
 Route::post('ajax/subscription/update_card', [SubscriptionController::class, 'update_card']);
 });
 

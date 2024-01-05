@@ -23,7 +23,7 @@ class SubscriptionController extends Controller
         if(!$request->user()->subscribed('main')){   
             $request->user()->newSubscription(
                 'main',
-                env('STRIPE_ID')
+                env('STRIPE_BASIC_ID')
             )->create($request->payment_method);
             return redirect()->route('mypage')->with('message', '有料会員に登録されました');
         }

@@ -23,7 +23,7 @@
     @enderror
 
      <div>
-         <strong>予約名</strong>
+         <strong>予約者名</strong>
          <p>{{$user_name}}</p>
          
      </div>

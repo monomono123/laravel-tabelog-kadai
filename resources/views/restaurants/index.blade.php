@@ -11,45 +11,68 @@
     </div>
     <div class="col-9">
      <div class="container">
-        
-            @foreach($categories as $cate)
-            <ul><a href="{{ route('restaurants.index', ['category' =>$cate->id])}}"></ul>
-                {{$cate->name }}</a>
-            @endforeach
+
+     <div class="carousel-inner">
+        <div class="carousel-item active">
+     <img src="{{ asset('/img/nagoya.png')}}"  style="border-radius :8px">
+     <div class="carousel-caption" style="color:#99ffcc">
+            <h1>
+              NAGOYAMESHI
+            </h1>
+          </div>
+        </div>
+      </div>
+      <br>
+     
             <form>
-                <input type='text' name='keyword' style="width:200px;">
+                <input type='text' name='keyword' placeholder="店舗検索" style="border-radius :8px;width:200px;">
                 <button type='submit' class="btn btn-primary">検索</button> 
             </form>
              @if ($category !== null)
              <label class="restaurant-category-label"><a href="{{ route('restaurants.index', ['category' => $category->id]) }}">{{ $category->name }}</a></label>
                  <a href="{{ route('restaurants.index') }}">トップ</a> > <a href="#">{{ $category->category_name }}</a> > {{ $category->name }}
-                 <h1>{{ $category->name }}の店舗一覧{{$total_count}}件</h1>
+                 <h3>{{ $category->name }}検索結果{{$total_count}}件</h3>
              @endif
+             <br>
+
+             <h3 class="text-secondary">カテゴリ検索</h3>
+            @foreach($categories as $cate)
+            <a href="{{ route('restaurants.index', ['category' =>$cate->id])}}" button type="button" class="btn btn-outline-secondary">
+                {{$cate->name }}</a>
+            @endforeach
          </div>
-        <div class="container mt-4">
-        @if ($restaurant->image)
-                    <img src="{{asset($restaurant->image)}}" class="img-thumbnail">
-                    @else
-                    <img src="{{asset('/img/dummy.png')}}" class="img-thumbnail">
-                    @endif
+                        <div class="col-12 col-md-6">
+            <h3>店舗一覧</h3>
+            @if ($restaurant->image && Illuminate\Support\Facades\File::exists($restaurant->image))
+                        <img src="{{asset($restaurant->image)}}">
+                        @else
+                        
+                        @endif
+
                 @foreach($restaurants as $restaurant)
-                {{ $restaurant->name }}
-                {{ $restaurant->category_id}}
-                {{ $restaurant->time }}
-                {{ $restaurant->holiday }}
-                <div class="col-3">
-                    <a href="{{route('restaurants.show', $restaurant)}}">
+                <div class="container py-4">
+                    
+                <div class="col">
+                <table class=table table-striped>
+                        <a href="{{route('restaurants.show', $restaurant)}}">
                         <img src="{{ asset('img/dummy.png')}}" class="img-thumbnail">
+                <tr>
+                    <th scope="col">店舗名　　： {{ $restaurant->name }}</th>
+                </tr>
+                <tr>
+                    <th scope="col">営業時間　： {{ $restaurant->time }}</th>
+                </tr>
+                <tr>
+                    <th scope="col">定休日　　： {{ $restaurant->holiday }}</th>
+                </tr> 
+                <tr>
+                    <th scope="col"> カテゴリー： {{ $restaurant->category_id}}</th>
+                </tr>
+                </table>
                     </a>
-                    <div class="row">
-                        <div class="col-12">
-                            <p class="restaurant-label mt-2">
-                                {{$restaurant->name}}<br>
-                                
-                            </p>
-                        </div>
-                    </div>
+                    
                 </div>
+</div>
                 @endforeach
             </div>
         </div>

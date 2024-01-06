@@ -153,6 +153,11 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'reservationday'=>'予約日時',
+        'reservationnumber'=>'予約人数',
+    ],
+
+
 
 ];

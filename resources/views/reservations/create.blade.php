@@ -16,10 +16,10 @@
   @endif
 
     @error('reservationnumber')
-        <strong>予約人数を入力してください</strong>
+        
     @enderror
     @error('reservationday')
-        <strong>予約日時を入力してください</strong>
+        
     @enderror
   
      <div>

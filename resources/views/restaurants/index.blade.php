@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 
-<div class="row">
+<div class="row" style="text-align: center;">
      <div class="col-2">
       @component('components.sidebar')
       @endcomponent
@@ -49,13 +49,13 @@
                                  <img src="{{ asset('img/dummy.png')}}" class="img-thumbnail" style="width:100%">                        
                              @endif
                              <tr>
-                                 <th scope="col">店舗名　　： {{ $restaurant->name }}</th>
+                                 <th scope="col">店舗名： {{ $restaurant->name }}</th>
                              </tr>
                              <tr>
-                                 <th scope="col">営業時間　： {{ $restaurant->time }}</th>
+                                 <th scope="col">営業時間： {{ $restaurant->time }}</th>
                              </tr>
                              <tr>
-                                 <th scope="col">定休日　　： {{ $restaurant->holiday }}</th>
+                                 <th scope="col">定休日： {{ $restaurant->holiday }}</th>
                              </tr> 
                              <tr>
                                  <th scope="col"> カテゴリー： {{ $restaurant->category_id}}</th>

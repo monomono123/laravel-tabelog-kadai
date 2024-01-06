@@ -61,13 +61,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
  Route::resource('reservations', ReservationController::class);
 
  Route::prefix('users')->middleware(['auth'])->group(function() {
-
-// Route::get('/mypage/{id}', 'UserController@getUser')->name('mypage');
-
  // 課金
-Route::get('subscription', [SubscriptionController::class,'index'])->name('subscription');
-Route::post('ajax/subscription/subscribe', [SubscriptionController::class,'subscribe']);
-Route::get('ajax/subscription/cancel', [SubscriptionController::class,'cancel']);
-Route::post('ajax/subscription/update_card', [SubscriptionController::class, 'update_card']);
+  Route::get('subscription', [SubscriptionController::class,'index'])->name('subscription');
+  Route::post('ajax/subscription/subscribe', [SubscriptionController::class,'subscribe']);
+  Route::get('ajax/subscription/cancel', [SubscriptionController::class,'cancel']);
+  Route::post('ajax/subscription/update_card', [SubscriptionController::class, 'update_card']);
 });
 

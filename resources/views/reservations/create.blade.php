@@ -39,12 +39,12 @@
      <input type="hidden" name="restaurant_id" value="{{$restaurant->id}}">
 
      <div>
-         <button type="submit" class="btn btn-primary">予約確定</button>
+         <button type="submit" class="btn btn-primary" style="margin: 10px;">予約確定</button>
      </div>
  
  </form>
 
- <a class="btn btn-outline-dark text-right" href="{{route('restaurants.show', $restaurant)}}">戻る</a>
+ <a class="btn btn-outline-dark text-right" href="{{route('restaurants.show', $restaurant)}}" style="margin: 10px;">戻る</a>
 
 </head>
 </html>

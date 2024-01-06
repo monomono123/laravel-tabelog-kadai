@@ -127,7 +127,7 @@ color: #097864;
 @media screen and (max-width: 767px) {*/
   
   
-/*スマートフォン画面幅（画面幅が最大375pxまで）の場合、以下のスタイルを適用。 */
+/*スマートフォン画面幅（画面幅が最大375pxまで）の場合、以下のスタイルを適用。*/ 
  @media screen and (max-width:375px) {
    .my_carousel_caption {
     font-size: 27px;

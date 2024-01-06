@@ -104,13 +104,13 @@
                          <textarea name="content" class="form-control m-2"></textarea>
                          <input type="hidden" name="restaurant_id" value="{{$restaurant->id}}">
                          <input type="hidden" name="image" value="{{$restaurant->image}}">
-                         <button type="submit" class="btn btn-success">レビュー追加</button>
+                         <button type="submit" class="btn btn-success" style="margin: 10px;">レビュー追加</button>
                      </form>
                  </div>
              </div>
           </div>
     @endauth
 
-    <a class="btn btn-outline-dark text-right" href="{{route('restaurants.index')}}">戻る</a>
+    <a class="btn btn-outline-dark text-right" href="{{route('restaurants.index')}}" style="margin: 10px;">戻る</a>
 
 @endsection

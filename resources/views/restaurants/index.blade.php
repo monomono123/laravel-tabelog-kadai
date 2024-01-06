@@ -2,7 +2,7 @@
 @extends('layouts.app')
 
 @section('content')
-
+<div class="d-flex justify-content-center">
 <div class="row">
   <div class="col-2">
     @component('components.sidebar')
@@ -10,7 +10,6 @@
     </div>
     <div class="col-9">
       <div class="container">
-
         <div class="carousel-inner">
            <div class="carousel-item active">
            <img src="{{ asset('/img/nagoya.png')}}"  style="border-radius :8px;width:100%">
@@ -70,7 +69,8 @@
                   </div>
                 </div>
                 @endforeach
-  </div>       
+</div>       
+     </div>
          {{ $restaurants->appends(request()->query())->links() }}
 </div>
 @endsection

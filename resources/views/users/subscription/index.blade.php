@@ -4,7 +4,7 @@
 <div class="container">
     <div class="col-md-6">
 
-    <a class="btn btn-outline-dark text-right" href="{{route('mypage')}}">マイページに戻る</a>
+    <a class="btn btn-outline-dark text-right" href="{{route('mypage')}}" style="margin: 10px;">マイページに戻る</a>
 
     @if(!$user->subscribed('main'))
         <div id="alert" role="alert" style="display:none">カードが認証できませんでした。</div>

@@ -134,11 +134,11 @@ color: #097864;
 
 @media screen and (min-width: 768px) {
   /* PC用のスタイルを指定する */
-  style,body{
+  style,body {
       max-width: 1080px;
       min-width: 960px;
-      margin: 0 auto 0 auto;
-}
+      margin: auto;
+    }
 }
 
 

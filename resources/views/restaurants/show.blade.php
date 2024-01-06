@@ -113,4 +113,6 @@
           </div>
     @endauth
 
+    <a class="btn btn-outline-dark text-right" href="{{route('restaurants.index')}}">戻る</a>
+
 @endsection

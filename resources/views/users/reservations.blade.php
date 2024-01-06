@@ -14,6 +14,9 @@
 @method('DELETE')
 <button type="submit" class="btn btn-danger">キャンセルする</button>
 </form>
+
+<a class="btn btn-outline-dark text-right" href="{{route('mypage')}}">マイページに戻る</a>
+
 @endforeach
 
 @endsection

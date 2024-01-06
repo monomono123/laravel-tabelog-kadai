@@ -3,6 +3,9 @@
 @section('content')
 <div class="container">
     <div class="col-md-6">
+
+    <a class="btn btn-outline-dark text-right" href="{{route('mypage')}}">マイページに戻る</a>
+
     @if(!$user->subscribed('main'))
         <div id="alert" role="alert" style="display:none">カードが認証できませんでした。</div>
         <form id="card_form" action="ajax/subscription/subscribe" method="POST">
@@ -98,6 +101,7 @@ function stripePaymentHandler(payment_method) {
   form.appendChild(hiddenInput);
   form.submit();
 }
+
 
 </script>
 @endsection

@@ -1,3 +1,7 @@
+@extends('layouts.app')
+
+@section('content')
+
 <html>
     <head>
 <h1>{{$restaurant->name}}</h1>
@@ -39,5 +43,9 @@
      </div>
  
  </form>
+
+ <a class="btn btn-outline-dark text-right" href="{{route('restaurants.show', $restaurant)}}">戻る</a>
+
 </head>
 </html>
+@endsection

@@ -1,5 +1,3 @@
-@foreach ($restaurants as $restaurant)
-
 
 @extends('layouts.app')
 
@@ -23,7 +21,7 @@
         </div>
       </div>
       <br>
-     
+      
             <form>
                 <input type='text' name='keyword' placeholder="店舗検索" style="border-radius :8px;width:200px;">
                 <button type='submit' class="btn btn-primary">検索</button> 
@@ -43,11 +41,7 @@
          </div>
                         <div class="col-12 col-md-6">
             <h3>店舗一覧</h3>
-            @if ($restaurant->image && Illuminate\Support\Facades\File::exists($restaurant->image))
-                        <img src="{{asset($restaurant->image)}}">
-                        @else
-                        
-                        @endif
+            
 
                 @foreach($restaurants as $restaurant)
                 <div class="container py-4">
@@ -55,7 +49,11 @@
                 <div class="col">
                 <table class=table table-striped>
                         <a href="{{route('restaurants.show', $restaurant)}}">
-                        <img src="{{ asset('img/dummy.png')}}" class="img-thumbnail">
+                        @if ($restaurant->image && Illuminate\Support\Facades\File::exists($restaurant->image))
+                        <img src="{{asset($restaurant->image)}}">
+                        @else
+                        <img src="{{ asset('img/dummy.png')}}" class="img-thumbnail">                        
+                        @endif
                 <tr>
                     <th scope="col">店舗名　　： {{ $restaurant->name }}</th>
                 </tr>
@@ -80,4 +78,3 @@
     </div>
 </div>
 @endsection
-@endforeach

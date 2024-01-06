@@ -27,7 +27,8 @@
              </div>
          </div>
  
-         <hr>
+        </hr>
+        <hr>
  
          <div class="container">
              <div class="d-flex justify-content-between">
@@ -49,7 +50,7 @@
              </div>
          </div>
 
-
+         </hr>
          <hr>
  
          <div class="container">
@@ -72,8 +73,7 @@
              </div>
          </div>
  
-</hr>
- 
+         </hr>
          <hr>
  
          <div class="container">
@@ -99,6 +99,7 @@
              </div>
          </div>
 
+         </hr>
          <hr>
  
          <div class="container">
@@ -121,13 +122,12 @@
              </div>
          </div>
  
-</hr>
+         </hr>
 
      @if (session('message'))
     {{ session('message') }}
     @endif
- 
-         <hr>
+    
      </div>
  </div>
  @endsection

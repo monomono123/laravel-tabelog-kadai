@@ -114,6 +114,24 @@ color: #097864;
 }
 
 
+.my_carousel_caption {   
+  font-size: 52px;
+
+  /* 上下に余白追加 */
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
+
+  color: #99ffcc;
+
+  /* テキスト中央揃え */
+  text-align: center;
+  font-family: 'Lora', serif;
+  line-height: 1.5em;
+}
+
+
+
+
 @media screen and (min-width: 768px) {
   /* PC用のスタイルを指定する */
   style,body{
@@ -123,12 +141,11 @@ color: #097864;
 }
 }
 
-/* 画面幅が767px以下のとき　スマホ 
-@media screen and (max-width: 767px) {*/
+
   
   
 /*スマートフォン画面幅（画面幅が最大375pxまで）の場合、以下のスタイルを適用。*/ 
- @media screen and (max-width:375px) {
+ @media screen and (max-width:767px) {
    .my_carousel_caption {
     font-size: 27px;
    }

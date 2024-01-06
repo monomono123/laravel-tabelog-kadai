@@ -13,7 +13,7 @@
         <div class="carousel-inner">
            <div class="carousel-item active">
            <img src="{{ asset('/img/nagoya.png')}}"  style="border-radius :8px;width:100%">
-              <div class="carousel-caption" style="color:#99ffcc">
+              <div class="carousel-caption">
                <h1 class="my_carousel_caption">
               NAGOYAMESHI
                </h1>

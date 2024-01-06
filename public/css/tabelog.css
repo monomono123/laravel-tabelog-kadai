@@ -89,3 +89,52 @@ color: #097864;
   color: #87cefa;
 }
 
+.my_carousel_caption {
+   
+  /* フォントサイズ52px */
+  font-size: 52px;
+
+  /* 上下に余白追加 */
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
+
+  /* フォント色は白色 */
+  color: #fff;
+
+  /* テキスト中央揃え */
+  text-align: center;
+  font-family: 'Lora', serif;
+  line-height: 1.5em;
+}
+
+/* 疑似要素でアイコンを配置。前に配置しています */
+.my_carousel_caption::before {
+  content: url(../img/logoSymbol_White.png);
+  display: block;
+}
+
+
+@media screen and (min-width: 768px) {
+  /* PC用のスタイルを指定する */
+  style,body{
+      max-width: 1080px;
+      min-width: 960px;
+      margin: 0 auto 0 auto;
+}
+}
+
+/* 画面幅が767px以下のとき　スマホ 
+@media screen and (max-width: 767px) {*/
+  
+  
+/*スマートフォン画面幅（画面幅が最大375pxまで）の場合、以下のスタイルを適用。 */
+ @media screen and (max-width:375px) {
+   .my_carousel_caption {
+    font-size: 27px;
+   }
+   
+     style, body {
+    min-width: 375px;
+    margin: 0;
+  }
+ }

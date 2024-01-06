@@ -1,12 +1,11 @@
 @extends('layouts.app')
 @section('content') 
 
+
 @if (session('message'))
 {{ session('message') }}
 @endif
 <link rel="stylesheet" href="{{ asset('/css/tabelog.css') }}">
- <div style="width: 100%;">
- 
  <div style="width:40rem;margin:5rem auto;">
  </div>
 
@@ -34,9 +33,8 @@
 
                             
     @endauth
- 
- 
-            <div class="card" style="width:40rem;margin:5rem auto;">
+
+            <div class="card">
                 <img src="{{ asset('/img/dummy.png') }}" alt="{{ $restaurant->name }}" class="card-img-top">
                     <div class="card-body">
                         <div class="card-text">
@@ -75,10 +73,10 @@
         </div>
     </div>
 
-       <div class="offset-1 col-10">
+    <div class="offset-1 col-10">
           <div class="row">
                  @foreach($reviews as $review)
-                 <div class="offset-md-5 col-md-5">
+                 
                      <p class="h3">{{$review->content}}</p>
                      <p class="h3">{{$review->star}}:{{str_repeat('★',$review->star)}}</p>
                      <label>{{$review->created_at}} {{$review->user->name}}</label>
@@ -88,7 +86,7 @@
  
              @auth
              <div class="row">
-                 <div class="offset-md-5 col-md-5">
+                
                      <form method="POST" action="{{ route('reviews.store') }}">
                          @csrf
                          <h4>評価</h4>

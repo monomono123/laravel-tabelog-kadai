@@ -2,6 +2,7 @@
 @extends('layouts.app')
 
 @section('content')
+
 <div class="row">
     <div class="col-2">
     @component('components.sidebar')
@@ -12,9 +13,9 @@
 
      <div class="carousel-inner">
         <div class="carousel-item active">
-     <img src="{{ asset('/img/nagoya.png')}}"  style="border-radius :8px">
+     <img src="{{ asset('/img/nagoya.png')}}"  style="border-radius :8px;width:100%">
      <div class="carousel-caption" style="color:#99ffcc">
-            <h1>
+            <h1 class="my_carousel_caption">
               NAGOYAMESHI
             </h1>
           </div>
@@ -39,12 +40,13 @@
                 {{$cate->name }}</a>
             @endforeach
          </div>
-                        <div class="col-12 col-md-6">
+            <div class="col-12 col-md-6">
             <h3>店舗一覧</h3>
             
 
                 @foreach($restaurants as $restaurant)
-                <div class="container py-4">
+                
+                <div class="container py-4" style="width:100%">
                     
                 <div class="col">
                 <table class=table table-striped>
@@ -68,13 +70,13 @@
                 </tr>
                 </table>
                     </a>
-                    
                 </div>
-</div>
+                </div>
                 @endforeach
             </div>
         </div>
          {{ $restaurants->appends(request()->query())->links() }}
     </div>
 </div>
+
 @endsection

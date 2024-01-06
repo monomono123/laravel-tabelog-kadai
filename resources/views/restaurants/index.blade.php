@@ -25,19 +25,19 @@
                  <button type='submit' class="btn btn-primary">検索</button> 
              </form>
               @if ($category !== null)
-              <label class="restaurant-category-label"><a href="{{ route('restaurants.index', ['category' => $category->id]) }}">{{ $category->name }}</a></label>
-                 <a href="{{ route('restaurants.index') }}">トップ</a>  <a href="#">{{ $category->category_name }}</a>  {{ $category->name }}
+              <label class="restaurant-category-label"><a href="{{ route('restaurants.index', ['category' => $category->id]) }}"></a></label> 
                  <h3>{{ $category->name }}検索結果{{$total_count}}件</h3>
+                 <a href="{{ route('restaurants.index') }}">トップページに戻る</a>
               @endif
               <br>
-              <h3 class="text-secondary">カテゴリ検索</h3>
+              <h3 class="text-secondary" style="margin:20px 0px 5px 5px">カテゴリ検索</h3>
                @foreach($categories as $cate)
               <a href="{{ route('restaurants.index', ['category' =>$cate->id])}}" button type="button" class="btn btn-outline-secondary">
                 {{$cate->name }}</a>
                @endforeach
          </div>
          <div class="col-12">
-             <h3>   店舗一覧</h3>            
+             <h3 style="margin:10px 0px 0px 20px">店舗一覧</h3>            
                 @foreach($restaurants as $restaurant)
                  <div class="container py-4" style="width:100%">    
                      <div class="col">

@@ -13,7 +13,7 @@
         @foreach ($errors->all() as $error)
         <p>{{ $error }}</p>
         @endforeach
-    @endif
+  @endif
 
     @error('reservationnumber')
         <strong>予約人数を入力してください</strong>
@@ -21,10 +21,10 @@
     @error('reservationday')
         <strong>予約日時を入力してください</strong>
     @enderror
-
+  
      <div>
          <strong>予約者名</strong>
-         <p>{{$user_name}}</p>
+         <p>{{$user_name}}  様</p>
          
      </div>
      <div>

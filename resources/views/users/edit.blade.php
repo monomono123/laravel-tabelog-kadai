@@ -2,7 +2,7 @@
  
  @section('content')
  <div class="container">
-     <div class="row justify-content-center">
+     <div class="d-flex justify-content-center">
          <div class="col-md-5">
              <span>
                  <a href="{{ route('mypage') }}">マイページ</a> > 会員情報の編集

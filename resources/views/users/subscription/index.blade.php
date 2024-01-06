@@ -2,10 +2,10 @@
 @extends('layouts.app')
 @section('content')
 <div class="container">
-    <div class="col-md-6">
 
-    <a class="btn btn-outline-dark text-right" href="{{route('mypage')}}" style="margin: 10px;">マイページに戻る</a>
-
+     
+    <a class="btn btn-outline-dark text-center d-flex justify-content-center" href="{{route('mypage')}}" style="margin:10px;width:100%">マイページに戻る</a>
+   
     @if(!$user->subscribed('main'))
         <div id="alert" role="alert" style="display:none">カードが認証できませんでした。</div>
         <form id="card_form" action="ajax/subscription/subscribe" method="POST">
@@ -48,7 +48,7 @@
     </form>
     <a href="ajax/subscription/cancel" onClick="return confirm('本当に有料会員をやめてよろしいですか？');"><div class="btn btn btn-outline-danger w-100" >有料会員をやめる</div></a>
     @endif
-    </div>
+    
 </div>
 <script src="https://js.stripe.com/v3/"></script>
 <script>

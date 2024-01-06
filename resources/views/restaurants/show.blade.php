@@ -11,13 +11,13 @@
 
  @auth
     @if(Auth::user()->favorite_restaurants()->where('restaurant_id', $restaurant->id)->exists())
-      <a href="{{ route('favorites.destroy', $restaurant->id) }}" class="btn btn-outline-warning text-favorite w-100" onclick="event.preventDefault(); document.getElementById('favorites-destroy-form').submit();">
+      <a href="{{ route('favorites.destroy', $restaurant->id) }}" class="btn btn-outline-warning text-favorite" onclick="event.preventDefault(); document.getElementById('favorites-destroy-form').submit();" style="margin:10px;widht:100%">
        <i class="fa fa-heart"></i>
         お気に入り解除
       </a>
 
     @else
-      <a href="{{ route('favorites.store', $restaurant->id) }}" class="btn btn-outline-warning text-favorite w-100" onclick="event.preventDefault(); document.getElementById('favorites-store-form').submit();">
+      <a href="{{ route('favorites.store', $restaurant->id) }}" class="btn btn-outline-warning text-favorite" onclick="event.preventDefault(); document.getElementById('favorites-store-form').submit();" style="margin:10px;widht:100%">
          <i class="fa fa-heart"></i>
           お気に入り
        </a>

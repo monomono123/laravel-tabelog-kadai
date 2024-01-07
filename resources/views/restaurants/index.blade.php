@@ -2,6 +2,7 @@
 @section('content')
 
 <div class="row" style="text-align: center;">
+<link rel="stylesheet" href="{{ asset('/css/tabelog.css') }}">
      <div class="col-2">
       @component('components.sidebar')
       @endcomponent
